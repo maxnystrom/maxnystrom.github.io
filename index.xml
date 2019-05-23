@@ -21,5 +21,36 @@
  I change platforms to learn something new. The last iteration of this blog was self-hosted in my townhome, on Ghost, on a Raspberry Pi. It was an interesting— and successful— experiment to learn how to manage that infrastructure top to bottom from creating content to managing the application, to networking and DNS, all the way down to hardware.</description>
     </item>
     
+    <item>
+      <title>Installing Ghost on Raspbian Jessie</title>
+      <link>http://maxnystrom.com/posts/installing-ghost-2/</link>
+      <pubDate>Fri, 16 Jun 2017 18:55:00 -0700</pubDate>
+      
+      <guid>http://maxnystrom.com/posts/installing-ghost-2/</guid>
+      <description>EDIT 2019-05-22 This post was hosted on a Raspberry Pi at the original time of writing, but now is hosted on Github. See this post.
+Every linux flavor has its own path to success And yes, this blog is running on a Raspberry Pi.
+There are issues with the version of Node.js v0.10.29 that comes preinstalled with Raspbian Jessie 2015-11-21 or newer. It&amp;rsquo;s not possible to install Node.js native add-ons or packages that depend on native add-ons.</description>
+    </item>
+    
+    <item>
+      <title>Series: On why I hate using internet applications on Windows</title>
+      <link>http://maxnystrom.com/posts/internet-applications-on-windows/</link>
+      <pubDate>Thu, 23 Jun 2016 20:21:00 -0700</pubDate>
+      
+      <guid>http://maxnystrom.com/posts/internet-applications-on-windows/</guid>
+      <description>Part 2: Mono Occasionally, a really slick web application is built that is written in a language and/or uses libraries that proprietary to a specific platform, limiting it&amp;rsquo;s adoption or making it difficult to implement with other applications. Sonarr is one such app- written in C# and dependent on the .NET framework to run. Generally speaking, this limits Sonarr from being run in anything but a Windows environment.
+The Mono project is an cross-platform, open-source .</description>
+    </item>
+    
+    <item>
+      <title>Installing Ghost on Ubuntu 14.04</title>
+      <link>http://maxnystrom.com/posts/installing-ghost-1/</link>
+      <pubDate>Thu, 13 Mar 2014 16:06:00 -0700</pubDate>
+      
+      <guid>http://maxnystrom.com/posts/installing-ghost-1/</guid>
+      <description>In a word, nuanced While Ubuntu is one of the easiest linux variants to pickup and use, node.js certainly becomes an exception. Not because there&amp;rsquo;s anything inherently more difficult in using this combination, but there are subtle changes that occur when using the combinations of different versions of Ubuntu (also Debian) and node.js.
+Ubuntu convienently has already added the node.js packages to the apt-get sources (apt-get install node, apt-get install nodejs, and apt-get install npm), so installing and managing these packages&amp;rsquo; upgrades isn&amp;rsquo;t an issue.</description>
+    </item>
+    
   </channel>
 </rss>

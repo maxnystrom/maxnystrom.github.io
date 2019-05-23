@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>Series: On why I hate using internet applications on Windows // Recent Thougts—</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.55.4" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Max Nystrom" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="http://maxnystrom.com/css/main.min.1404edaa588492a1000b47f95346fe1b8be8879821fa2a036168fd00fc33b279.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Series: On why I hate using internet applications on Windows"/>
+<meta name="twitter:description" content="Part 2: Mono Occasionally, a really slick web application is built that is written in a language and/or uses libraries that proprietary to a specific platform, limiting it&rsquo;s adoption or making it difficult to implement with other applications. Sonarr is one such app- written in C# and dependent on the .NET framework to run. Generally speaking, this limits Sonarr from being run in anything but a Windows environment.
+The Mono project is an cross-platform, open-source ."/>
+
+    <meta property="og:title" content="Series: On why I hate using internet applications on Windows" />
+<meta property="og:description" content="Part 2: Mono Occasionally, a really slick web application is built that is written in a language and/or uses libraries that proprietary to a specific platform, limiting it&rsquo;s adoption or making it difficult to implement with other applications. Sonarr is one such app- written in C# and dependent on the .NET framework to run. Generally speaking, this limits Sonarr from being run in anything but a Windows environment.
+The Mono project is an cross-platform, open-source ." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://maxnystrom.com/posts/internet-applications-on-windows/" />
+<meta property="article:published_time" content="2016-06-23T20:21:00-07:00"/>
+<meta property="article:modified_time" content="2016-06-23T20:21:00-07:00"/>
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="http://maxnystrom.com/"><img class="app-header-avatar" src="/avatar.jpg" alt="Max Nystrom" /></a>
+      <h1>Max Nystrom</h1>
+      <p>Thoughts and opinions contained here are my own. I have too many interests to list here or be an expert in, but I’ll try to write about them here eventually. Currently: Product at Cloudflare, Berkeley resident.</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/maxnystrom"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+          <a target="_blank" href="https://twitter.com/maxnystrom"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter">
+  <title>twitter</title>
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Series: On why I hate using internet applications on Windows</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Jun 23, 2016
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          5 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      
+
+<h2 id="part-2-mono">Part 2: Mono</h2>
+
+<p>Occasionally, a really slick web application is built that is written in a language and/or uses libraries that proprietary to a specific platform, limiting it&rsquo;s adoption or making it difficult to implement with other applications. <a href="https://sonarr.tv/">Sonarr</a> is one such app- written in C# and dependent on the .NET framework to run. Generally speaking, this limits Sonarr from being run in anything but a Windows environment.</p>
+
+<p><a href="http://www.mono-project.com/">The Mono project</a> is an cross-platform, open-source .NET framework primarily supported by Xamarian, a subsidiary of Microsoft. Ideally, this opens up C#/.NET applications to a much wider set of platforms where it&rsquo;s ubiquity would attract developers and in turn making C#/.NET a leading platform for developing web applications.</p>
+
+<p>Realistically, the implementation is flawed and carries over many obtuse functional methods that have much simpler configurations on the platforms that Mono targets.</p>
+
+<p>First, reaching or nearing 100% compatibility seems to be an <a href="http://www.mono-project.com/docs/about-mono/compatibility/">ongoing issue</a>.</p>
+
+<p>Following along the same theme, the native .NET environment has many auxiliary utilities to set certain environment conditions or states. These have been ported over as a part of  Mono, but are incomplete. Take the <a href="https://docs.microsoft.com/en-us/windows/desktop/Http/httpcfg-exe">httpcfg utility</a> which is a binary wrapper for the Windows HTTP configuration APIs for example. In Windows, there&rsquo;s a <a href="https://technet.microsoft.com/en-us/library/cc781601(v=ws.10).aspx">full suite</a> of options-</p>
+
+<pre><code class="language-bash">httpcfg {set | query | delete} {ssl | query | iplisten} [/i Ip:Port] [/h SSL Hash] [/g&quot;{GUID}&quot;] [/c StoreName] [/m CheckMode] [/r RevocationFreshness] [/x UrlRetrievalTimeout] [/t SslCtlIdentifier] [/n SslCtlStoreName] [/f Flags] [/u {http://URL:Port/ | https://URL:Port/}] [/a ACL]
+</code></pre>
+
+<p>whereas in Mono httpcfg is extraordinarily limited-</p>
+
+<pre><code class="language-bash">$ httpcfg
+Usage is:
+        httpcfg -add -port NN [-cert CERT -pvk PVK] [-p12 P12 -pwd PASSWORD]
+        httpcfg -del -port NN
+        httpcfg -list
+</code></pre>
+
+<p>and a user is only able to add, delete, and list certificates bound to ports.</p>
+
+<p>I&rsquo;d like to pause here and point out how odd it is that TLS termination in a .NET environment exists as a separate process from the web application listening on that port. Also that I could have TLS termination enabled and occurring on a port with no app listening for incoming connections. I could terminate Sonarr and still be accepting TLS connections that ultimately go nowhere. By contrast, applications in a *nix environment that support TLS handle termination in-app. If the app is closed, TLS termination no longer occurs.</p>
+
+<p>Further, Mono&rsquo;s implementation of httpcfg doesn&rsquo;t support <a href="https://forums.sonarr.tv/t/mono-didnt-support-intermediate-ssl-certificate-chains-causing-problems-between-nzbtomedia-and-nzbdrone-sonarr-fix/2467/6">intermediary certs</a>
+so you&rsquo;re out of luck if you need to use a publicly-trusted certificate to secure your connection as all certificate authorities sign against an intermediate certificate instead of their root certs. This seems like a HUGE oversight, unless they assumed that everyone who would develop on this platform would have a proxy in front of their app which handled TLS termination correctly. Still, not a great assumption.</p>
+
+<p>Also annoyingly, it requires private keys to be in <a href="https://github.com/Sonarr/Sonarr/wiki/SSL">pvk format</a>, which is a proprietary Microsoft file format that nobody else uses and is difficult to create outside of a Windows environment or in PKCS#12, which is more widely used, but still less-common than the near universal usage of PEM-encoded x509 (certificates) and PKCS#1 or SEC-1 (key) files.</p>
+
+<p>Probably the most glaring and flagrant offense in in the Mono .NET enviromnent has to that, at some point, someone decided that it was a good idea to <a href="https://github.com/mono/mono/commit/05f25eaaaa9fedd217cc1006182cce0da9275f25">hard-code the requirement</a> that the client must also present a certificate when establishing a TLS connection in addition to the server. That is, that <em>all</em> TLS connections must be mutually-authenticated. This requirement <a href="https://github.com/mono/mono/blame/master/mcs/class/System/System.Net/HttpConnection.cs#L78">is still present today</a>.</p>
+
+<p>This is an absolutely <em>crazy</em> requirement to force upon the entire platform. Mutually-authenticated TLS is a great feature, but seldom used. Case in point- no browser on Windows supports this functionality by default, likely because SChannel doesn&rsquo;t handle this but that&rsquo;s a guess (somewhat hilariously, browsers on OS X 10.11 do). Given that why would this ever be a good idea to always enforce?</p>
+
+<p>The only solution that exists to remove the always-mutually-authenticate TLS connections requirement is to compile mono from source, changing the file <code>/mcs/class/System/System.Net/HttpConnection.cs</code> so that the line that reads:</p>
+
+<pre><code>SslServerStream ssl_stream = new SslServerStream (new NetworkStream (sock, false), cert, false, true, false);
+</code></pre>
+
+<p>becomes</p>
+
+<pre><code>SslServerStream ssl_stream = new SslServerStream (new NetworkStream (sock, false), cert, false, false);
+</code></pre>
+
+<p>and allows clients to connect without presenting a certificate. Quite a lot of work just to solve one issue.</p>
+
+<p>Looking back, the steps I took to enforce access to Sonarr via a TLS connection were:</p>
+
+<ol>
+<li>Obtain a publicly-trusted key/cert pair</li>
+<li>Convert the PEM-encoded key to PVK</li>
+<li>Bind the key/cert pair to a port that the .NET service was listening to</li>
+<li>Compile .NET from source to remove the mutual-authentication requiremen.</li>
+<li>Proxy Sonarr with Nginx so that clients are sent the full trust chain during the TLS handshake and don&rsquo;t receive insecure connection warnings</li>
+</ol>
+
+<p>Entirely way too much work to enable TLS for a service. I laugh when comparing this to configuring TLS for <a href="https://couchpota.to/">CouchPotato</a> where all I needed to do was update the config file with the locations of the key and cert and simply restart the app.</p>
+
+<p>I&rsquo;d be a bit remiss if I didn&rsquo;t at least acknowledge that this isn&rsquo;t directly a problem with Windows and that all the difficulties mentioned above stem from using software for Windows on a non-Windows platform. I still feel like there&rsquo;s some shame to be had in encouraging developers to build against one platform-specific run-time.</p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

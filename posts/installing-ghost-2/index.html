@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>Installing Ghost on Raspbian Jessie // Recent Thougts—</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.55.4" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Max Nystrom" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="http://maxnystrom.com/css/main.min.1404edaa588492a1000b47f95346fe1b8be8879821fa2a036168fd00fc33b279.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Installing Ghost on Raspbian Jessie"/>
+<meta name="twitter:description" content="EDIT 2019-05-22 This post was hosted on a Raspberry Pi at the original time of writing, but now is hosted on Github. See this post.
+Every linux flavor has its own path to success And yes, this blog is running on a Raspberry Pi.
+There are issues with the version of Node.js v0.10.29 that comes preinstalled with Raspbian Jessie 2015-11-21 or newer. It&rsquo;s not possible to install Node.js native add-ons or packages that depend on native add-ons."/>
+
+    <meta property="og:title" content="Installing Ghost on Raspbian Jessie" />
+<meta property="og:description" content="EDIT 2019-05-22 This post was hosted on a Raspberry Pi at the original time of writing, but now is hosted on Github. See this post.
+Every linux flavor has its own path to success And yes, this blog is running on a Raspberry Pi.
+There are issues with the version of Node.js v0.10.29 that comes preinstalled with Raspbian Jessie 2015-11-21 or newer. It&rsquo;s not possible to install Node.js native add-ons or packages that depend on native add-ons." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://maxnystrom.com/posts/installing-ghost-2/" />
+<meta property="article:published_time" content="2017-06-16T18:55:00-07:00"/>
+<meta property="article:modified_time" content="2017-06-16T18:55:00-07:00"/>
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="http://maxnystrom.com/"><img class="app-header-avatar" src="/avatar.jpg" alt="Max Nystrom" /></a>
+      <h1>Max Nystrom</h1>
+      <p>Thoughts and opinions contained here are my own. I have too many interests to list here or be an expert in, but I’ll try to write about them here eventually. Currently: Product at Cloudflare, Berkeley resident.</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/maxnystrom"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+          <a target="_blank" href="https://twitter.com/maxnystrom"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter">
+  <title>twitter</title>
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Installing Ghost on Raspbian Jessie</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Jun 16, 2017
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          6 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      
+
+<h3 id="edit-2019-05-22">EDIT 2019-05-22</h3>
+
+<p>This post was hosted on a Raspberry Pi at the original time of writing, but now is hosted on Github. See <a href="https://maxnystrom.com/posts/hello-hugo/">this post.</a></p>
+
+<h2 id="every-linux-flavor-has-its-own-path-to-success">Every linux flavor has its own path to success</h2>
+
+<p>And yes, this blog is running on a Raspberry Pi.</p>
+
+<p>There are <a href="https://github.com/fivdi/onoff/wiki/Node.js-v0.10.29-and-native-addons-on-the-Raspberry-Pi">issues</a> with the version of Node.js v0.10.29 that comes preinstalled with Raspbian Jessie 2015-11-21 or newer. It&rsquo;s not possible to install Node.js native add-ons or packages that depend on native add-ons. Therefore, Node must be built from source.</p>
+
+<p>As a note, both building Node and installing Ghost require many things to be run as root, so it&rsquo;s best to switch to the root user before beginning.</p>
+
+<ol>
+<li><p>Fetch the latest version of Node
+<code>$ wget http://nodejs.org/dist/node-latest.tar.gz</code></p></li>
+
+<li><p>Unpack the compressed tarball
+<code>$ tar -xzf node-latest.tar.gz</code></p></li>
+
+<li><p>Change to the unpacked directory, for example
+<code>$ cd node-v6.2.2/</code><br />
+where the version number will vary.</p></li>
+
+<li><p>Configure your makefile
+<code>$ ./configure</code><br /><br />
+If you&rsquo;re on a Raspberry Pi 2 or 3, it&rsquo;s best to pause at this point and ensure that you&rsquo;re utilizing all four cores during the make process. By default, make only utilizes one core. In the real world, this means that building Node from source using one core will take <em>several hours</em> to complete. Using all four cores on a Pi 2 reduces the time needed by about 75%, resulting in the build process only taking about an hour to complete.<br /><br />
+Using multiple cores during the make process can be as simple as passing the <code>-j</code> flag with the number of cores you wish to use, or it can be a bit more elegant and flexible by doing something like adding the lines below <code>#Parallel Make</code> to the end of your <code>.bashrc</code> file then reloading your profile with <code>$ source ~/.bashrc</code>. <br /><br />Here, <code>export NUMCPUS=$()</code> both defines the environment variable and sets its value to <code>grep -c &quot;^processor&quot; /proc/cpuinfo</code> where &ldquo;grep&rdquo; searches the file &ldquo;/proc/cpuinfo&rdquo; for lines that begin with &ldquo;processor&rdquo; and passing the &ldquo;-c&rdquo; flag to grep counts the number of results.<br /><br />
+The last line simply sets an alias called &ldquo;pmake&rdquo;, which is simply calling make with the necessary arguments to run multiple jobs in parallel.</p>
+
+<pre><code>#Parallel Make
+export NUMCPUS=$(grep -c &quot;^processor&quot; /proc/cpuinfo)
+alias pmake='time nice make -j$NUMCPUS --load-average=$NUMCPUS'
+</code></pre></li>
+
+<li><p>Make Node using one of the following</p>
+
+<ul>
+<li><code>$ make</code> =&gt; Simply uses one core, or alternately</li>
+<li><code>$ make -j4 -l4</code> =&gt; Manually configure make to use all four cores and ensure that only four jobs are running simultaneously, or alternately</li>
+<li><code>$pmake</code> =&gt; Use the alias created above to have make use all cores and time the process.</li>
+</ul></li>
+
+<li><p>Install Node
+<code>$ make install</code><br />Note: Installation is a quick process, so there&rsquo;s no need to run things in parallel.</p></li>
+
+<li><p>Download the latest version of Ghost
+<code>$ wget https://ghost.org/zip/ghost-latest.zip</code></p></li>
+
+<li><p>Unzip Ghost
+<code>$ unzip -d /path/to/install/ghost ghost-latest.zip</code><br />and change to the directory where the files were saved<br />
+<code>$ cd /path/to/install/ghost</code></p></li>
+
+<li><p>Install Ghost
+<code>$ npm install --production</code></p></li>
+
+<li><p>Create a ghost configuration file by copying the example
+<code>$ cp config.example.js config.js</code><br />
+We&rsquo;re not changing any of the defaults as a part of the installation, so the server will listen on port 2368 by default.<br />
+Note: when installing the latest version of Node, the most recent version <a href="http://support.ghost.org/supported-node-versions/">isn&rsquo;t currently supported</a> by Ghost. However, the most current version works as intended after disabling Ghost&rsquo;s version check with an environment variable. This can be passed along with command to start Ghost or set in the bash profile. The necessary variable is <code>GHOST_NODE_VERSION_CHECK=false</code>.</p></li>
+
+<li><p>Start the Ghost process to ensure that the installation works
+<code>$ npm start --production</code> (if the environment variable is set in the bash profile) or alternately<br />
+<code>$ GHOST_NODE_VERSION_CHECK=false npm start --production</code> (if the environment variable is to be passed along with the command)</p></li>
+
+<li><p>Check to see if the Ghost server is accessible by using a second terminal window to run
+<code>$ curl -vso /dev/null http://127.0.0.1:2368</code><br />
+where a &ldquo;HTTP/1.1 200 OK&rdquo; in the response headers for the curl request indicates a successful configuration and looking at the terminal for the running npm ghost process, there should be an access log line.</p></li>
+
+<li><p>To avoid the requirement of keeping a terminal window open to keep Ghost running, install <a href="http://supervisord.org">Supervisor</a> to run an app as a daemon
+<code>$ apt-get update &amp;&amp; apt-get install supervisor -y</code></p></li>
+
+<li><p>Create a configuration file for Supervisor to manage Ghost
+<code>$ touch /etc/supervisor/conf.d/ghost.conf</code><br />
+that contains the following lines<br /></p>
+
+<pre><code>[program:ghost]
+command = npm start --production
+directory = /path/
+user = root
+autostart = true
+autorestart = true
+stdout_logfile = /var/log/supervisor/ghost.log
+stderr_logfile = /var/log/supervisor/ghost_err.log
+environment = NODE_ENV=&quot;production&quot;,GHOST_NODE_VERSION_CHECK=&quot;false&quot;
+</code></pre></li>
+
+<li><p>Check to see if Supervisor is running after installation
+<code>$ service supervisord status</code><br />if Supervisor is not running<br />
+<code>$ service supervisord start</code></p></li>
+
+<li><p>Reload Supervisor with with the new Ghost configuration file
+<code>$ supervisorctl reload</code> <br />and check to see if Ghost is running<br />
+<code>$ supervisorctl status</code><br />If it isn&rsquo;t<br />
+<code>$ supervisorctl start ghost</code></p></li>
+
+<li><p>Install <a href="http://nginx.org">Nginx</a> to proxy Ghost and make it available externally
+<code>$ apt-get update &amp;&amp; apt-get install nginx-full -y</code></p></li>
+
+<li><p>Create a new virtual host file to proxy Ghost
+<code>$ touch /etc/nginx/sites-available/ghost_website_name</code><br />and create a symlink in the sites-enabled directory<br />
+<code>$ ln -s /etc/nginx/sites-available/ghost_website_name /etc/nginx/sites-enabled/ghost_website_name</code><br />
+and delete the symlink for the default virtual host<br /><code>$ rm /etc/nginx/sites-enabled/default</code></p></li>
+
+<li><p>Edit the ghost_website_name virtual host file so that it contains the following<br /></p>
+
+<pre><code>server {
+        listen          80;
+        server_name     example.com *.example.com;
+        location / {
+                proxy_pass      http://127.0.0.1:2368;
+        }
+}
+</code></pre></li>
+
+<li><p>Restart Nginx
+<code>$ service nginx restart</code></p></li>
+
+<li><p>Ghost is now accessible at the external IP address where it was installed on port 80 (the default port for HTTP traffic). Visiting <code>http://\{IP_address}/</code> in a browser will now load Ghost. I&rsquo;ll save configuring Ghost and Nginx for a future post.</p></li>
+</ol>
+
+<p>Quite a few more steps are needed than would be necessary on a more standard linux distribution (eg, Ubuntu) on more standard architecture (eg, x86) likely due to the technologies used not originally being developed for armhf and the user-base being much smaller so packaged versions of the above are less likely to be available and in some cases, not as thoroughly tested.</p>
+
+<hr />
+
+<p>As an addendum, The <a href="https://github.com/daleanthony/uno">theme</a> I was using relied on Ghost loading jQuery before the one JS file used in the theme was loaded. In older versions of Ghost, this happened as intended. However, in the latest version, jQuery isn&rsquo;t loaded before main.js, so default.hbs needs to be modified such that <code>&lt;script type=&quot;text/javascript&quot; src=&quot;https://code.jquery.com/jquery-1.12.0.min.js&quot;&gt;&lt;/script&gt;</code> appears on the line immediately preceding <code>&lt;script type=&quot;text/javascript&quot; src=&quot;/assets/js/main.js?v=e58334d1c1&quot;&gt;&lt;/script&gt;</code> which allows main.js to function as intended.</p>
+
+<hr />
+
+<h3 id="update-2017-01-24">Update: 2017-01-24</h3>
+
+<p>The SD card in my Raspberry Pi developed some bad sectors where the MBR was located on the disk, so it was no longer bootable and I&rsquo;ve replaced it. Fortunately, I had an old export of most of my posts so I was able to recover almost everything. I&rsquo;ll attempt to recover my most recent post, but for some reason, I don&rsquo;t see it in the ghost.db, but a fragment is still in the Cloudflare cache, so while slightly confused, I retain a sliver of hope for recovery.</p>
+
+<p>I changed one thing this go around— instead of using upstart, I decided to write a systemd service since the latest stable Debian release and stable derivatives all use systemd. It&rsquo;s fairly straight-forward.</p>
+
+<ol>
+<li><p>Create the file <code>ghost.service</code>. Note: I realize I should probably not run the service as root, but as another user with adequate permissions.</p>
+
+<pre><code>[Unit]
+Description=Ghost
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/path/to/ghost
+Environment=&quot;GHOST_NODE_VERSION_CHECK=false&quot;
+ExecStart=/usr/local/bin/npm start --production
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target
+</code></pre></li>
+
+<li><p>Enable the service:
+<code>sudo systemctl enable ghost.service</code></p></li>
+
+<li><p>Reload Systemctl:
+<code>sudo systemctl daemon-reload</code></p></li>
+
+<li><p>Restart the Ghost service:
+<code>sudo systemctl restart ghost.service</code></p></li>
+
+<li><p>Check the status to ensure that it&rsquo;s running:
+<code>sudo systemctl status ghost.service</code></p></li>
+</ol>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>
